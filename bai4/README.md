@@ -40,6 +40,6 @@
 	+ LED PA1 nhấp nháy đều đặn với chu kỳ 1000 ms  
 	+ Hàm delay chính xác hơn so với dùng vòng for  
 
-- Link tới video nộp bài: [Link]()
+- Link tới video nộp bài: [Link](https://drive.google.com/file/d/1TzU8MURbHv_YCA9rqcbtvZ_OSMEvLPFG/view?usp=sharing)
 
-- File code: [Link]()
+- File code: [Link](https://github.com/NguyenVuTatKhang/EmbeddedSystemNhom1/blob/main/bai4/Code/main.c)

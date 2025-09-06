@@ -16,7 +16,7 @@
 			
 			+ Tiếp theo, cho GPIOC trỏ tới BSRR, và lặp lại 2 số (1 << 13) và ~(1 << 13) liên tục để bật và tắt led, tạo thành blink led.
 
-- Link tới video nộp bài: [Link]()
+- Link tới video nộp bài: [Link](https://drive.google.com/file/d/1c33MMcpQipCsHPuv1BZ6K9sDsr9eDK4l/view?usp=sharing)
 	
-- File code: [Link]()
+- File code: [Link](https://github.com/NguyenVuTatKhang/EmbeddedSystemNhom1/blob/main/bai2/Code/main.c)
 

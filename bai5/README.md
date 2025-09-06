@@ -1,6 +1,6 @@
-# Nộp bài tập số 6:
+# Nộp bài tập số 5:
 
-## Nội dung bài tập số 6
+## Nội dung bài tập số 5
 
 - Cấu hình UART trên STM32F1  
 - Viết chương trình gửi chuỗi "Hello from STM32!" tới máy tính  
@@ -24,6 +24,6 @@
     + Chức năng echo hoạt động chính xác.  
     + Lệnh "ON" và "OFF" điều khiển LED đúng yêu cầu.  
 
-- Link tới video nộp bài: [Link]()
+- Link tới video nộp bài: [Link](https://drive.google.com/file/d/1LZEF1TRDpj4K7qXtILlsVF9fTOJl0AR3/view?usp=sharing)
 
-- File code: [Link]()
+- File code: [Link](https://github.com/NguyenVuTatKhang/EmbeddedSystemNhom1/blob/main/bai5/Code/main.c)

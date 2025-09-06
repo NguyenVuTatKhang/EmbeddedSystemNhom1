@@ -33,6 +33,6 @@
 	+ Khi nhấn và thả nút PB0: LED PA0 sẽ đổi trạng thái (toggle) theo số lần nhấn
 	+ Cách xử lý debounce đơn giản bằng chờ nhả + delay(200) cho hiệu quả với nút cơ bản
 
-- Link tới video nộp bài: [Link]()
+- Link tới video nộp bài: [Link](https://drive.google.com/file/d/1rTydeaSxpZ_YcDG3YwTLYiiWPIAC5uHs/view?usp=drive_link)
 
-- File code: [Link]()
+- File code: [Link](https://github.com/NguyenVuTatKhang/EmbeddedSystemNhom1/blob/main/bai3/Code/main.c)
