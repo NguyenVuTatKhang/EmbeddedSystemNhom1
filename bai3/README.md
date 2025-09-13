@@ -1,4 +1,4 @@
-# Bài 3 - Điều khiển ngắt ngoài (EXIC)
+# Bài 3 - Điều khiển ngắt ngoài (EXTI)
 
 ## Nội dung bài tập
 
