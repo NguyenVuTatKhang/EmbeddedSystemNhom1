@@ -8,7 +8,7 @@ _Bài tập có 2 yêu cầu chính như sau:_
 
 - Trong khi nhấn nút thì 1 Led khác vẫn nháy với tần số 1Hz (Tức chu kỳ là 1 giây)
 
-***File code sử dụng: [Link](https://github.com/NguyenVuTatKhang/EmbeddedSystemNhom1/blob/main/bai3/user/main.c)***
+***File code kết quả: [Link](https://github.com/NguyenVuTatKhang/EmbeddedSystemNhom1/blob/main/bai3/user/main.c)***
 
 ## Các bước thực thi
 
