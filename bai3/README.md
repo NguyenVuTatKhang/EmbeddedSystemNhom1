@@ -1,38 +1,111 @@
-# Nộp bài tập số 3:
+# Bài 3 - Điều khiển ngắt ngoài (EXIC)
 
-## Nội dung bài tập số 3
+## Nội dung bài tập
 
-- Nạp code và cho LED PA0 đổi trạng thái (toggle) khi nhấn nút PB0 (polling)
-- Sử dụng pull-up nội tại cho nút, xử lý simple debounce bằng chờ nhả và delay
+_Bài tập có 2 yêu cầu chính như sau:_
 
-## Tiến độ và kết quả
+- Cấu hình ngắt ngoài cho 1 nút nhấn. Khi nhấn thì 1 Led đảo trạng thái
 
-- Bằng cách tìm hiểu Datasheet và Reference Manual của STM32F103, nhóm đã hiểu được cách sử dụng thanh ghi và các hàm thư viện StdPeriph (GPIO/RCC) để lập trình STM32F103C8T6; các bước thực hiện chính gồm:
+- Trong khi nhấn nút thì 1 Led khác vẫn nháy với tần số 1Hz (Tức chu kỳ là 1 giây)
 
-	+ Cấu hình clock và GPIO:
-	
-			+ Bật clock cho GPIOA để điều khiển LED (RCC_APB2Periph_GPIOA)
-			+ Bật clock cho GPIOB để đọc nút nhấn (RCC_APB2Periph_GPIOB)
-	
-	+ Cấu hình LED:
-	
-			+ LED gắn vào PA0, cấu hình Output Push-Pull, tốc độ 50 MHz
-	
-	+ Cấu hình nút nhấn:
-	
-			+ Nút nhấn gắn vào PB0, cấu hình Input pull-up nội tại (GPIO_Mode_IPU)
-			+ Nút được đọc bằng hàm GPIO_ReadInputDataBit; nút nhấn ở trạng thái hoạt động là mức thấp (active low)
-	
-	+ Lập trình hoạt động:
-	
-			+ Sử dụng một biến đếm cnt; mỗi lần phát hiện nút nhấn (mức thấp) tăng cnt, chờ tới khi nút nhả (while loop) và delay để giảm hiện tượng rung (debounce)
-			+ Khi cnt lẻ: tắt LED (ResetBits PA0), khi cnt chẵn: bật LED (SetBits PA0)
-	
-- Kết quả thực nghiệm:
+***File code sử dụng: [Link]()***
 
-	+ Khi nhấn và thả nút PB0: LED PA0 sẽ đổi trạng thái (toggle) theo số lần nhấn
-	+ Cách xử lý debounce đơn giản bằng chờ nhả + delay(200) cho hiệu quả với nút cơ bản
+## Các bước thực thi
 
-- Link tới video nộp bài: [Link](https://drive.google.com/file/d/1rTydeaSxpZ_YcDG3YwTLYiiWPIAC5uHs/view?usp=drive_link)
+1. Cấu hình cho 2 Led (Cụ thể ở đây sử dụng Led tại PA0 và PA2)
 
-- File code: [Link](https://github.com/NguyenVuTatKhang/EmbeddedSystemNhom1/blob/main/bai3/Code/main.c)
+_Để cấu hình Led cho PA0 và PA2, chúng ta sẽ thực hiện các bước sau:_
+
+- Bật clock cho GPIOA
+
+```c
+RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA,ENABLE);
+```
+
+- Cấu hình cho chân ở trạng thái Output - Pushpull, tốc độ là 50MHz
+
+```c
+GPIO_InitStruct.GPIO_Mode = GPIO_Mode_Out_PP;
+GPIO_InitStruct.GPIO_Speed = GPIO_Speed_50MHz;
+```
+
+- Trỏ đến vị trí chân PA0 và PA2 là vị trí điều khiển cho output trong function này, sau đó xác nhận sử dụng các cấu hình trên cho GPIOA:
+
+```c
+GPIO_InitStruct.GPIO_Pin = GPIO_Pin_0 | GPIO_Pin_2;
+GPIO_Init(GPIOA, &GPIO_InitStruct);
+```
+
+2. Cấu hình cho nút bấm (Cụ thể ở đây sử dụng PA1)
+
+_Để cấu hình cho nút bấm, chúng ta thực hiện các bước sau:_
+
+- Tương tự với bước cấu hình cho Led, sẽ chỉ khác ở phần trạng thái cho chân sẽ là Input - PullUp/PullDown 
+
+```c
+GPIO_InitStruct.GPIO_Mode = GPIO_Mode_IPU;
+GPIO_InitStruct.GPIO_Pin = GPIO_Pin_1;
+```
+
+- Do cấu hình cho trạng thái là Input, nên trong trường hợp này sẽ không cấu hình cho tốc độ nữa.
+
+3. Cấu hình cho ngắt ngoài (EXTI 1, dùng chân PA1 tương ứng với nút bấm đã configure tại PA1)
+
+_Để cấu hình cho ngắt ngoài, chúng ta thực hiện như function dưới đây:_
+
+```c
+void EXTI_Config(){
+	NVIC_InitTypeDef NVIC_InitStruct;
+	EXTI_InitTypeDef EXTI_InitStruct;
+	
+	NVIC_PriorityGroupConfig(NVIC_PriorityGroup_0);
+	
+	NVIC_InitStruct.NVIC_IRQChannel = EXTI1_IRQn; 	
+	NVIC_InitStruct.NVIC_IRQChannelCmd = ENABLE;
+	NVIC_InitStruct.NVIC_IRQChannelPreemptionPriority = 0;
+	NVIC_InitStruct.NVIC_IRQChannelSubPriority = 0;
+	NVIC_Init(&NVIC_InitStruct);
+	
+	GPIO_EXTILineConfig(GPIO_PortSourceGPIOA, GPIO_PinSource1);  
+	EXTI_InitStruct.EXTI_Line = EXTI_Line1;
+	EXTI_InitStruct.EXTI_LineCmd = ENABLE;
+	EXTI_InitStruct.EXTI_Mode = EXTI_Mode_Interrupt;
+	EXTI_InitStruct.EXTI_Trigger = EXTI_Trigger_Falling;  
+	EXTI_Init(&EXTI_InitStruct);
+}
+```
+
+***Lưu ý: Ngắt ngoài trong phần trên sử dụng sườn xuống, tức EXTI_Trigger_Falling***
+
+4. Thực hiện tác vụ cho 2 Led chạy
+
+_Tác vụ cho 2 Led chạy sẽ nằm trong 2 phần riêng biệt, với Led PA0 tại EXTI còn Led PA2 trong while(1)_
+
+- Tác vụ với Led PA0: Sẽ đảo trạng thái bằng cách dùng dấu XOR mỗi khi nhận được nút bấm
+
+	```c
+	void EXTI1_IRQHandler(void){
+		if(EXTI_GetITStatus(EXTI_Line1) != RESET){
+					GPIOA->ODR ^= GPIO_Pin_0;    
+			EXTI_ClearITPendingBit(EXTI_Line1); 
+		}
+	}
+	```
+
+	+ Sau khi đảo trạng thái xong, sẽ đặt lại trạng thái cờ cho EXTI để tránh trường hợp chie thựuc hiện được ngắt 1 lần duy nhất.
+
+- Tác vụ với Led PA2: Nhấp nháy liên tục tại while (1), sử dụng function delay cơ bản đã giới thiệu ở bài trước.
+
+```c
+	while(1){
+		GPIO_ResetBits(GPIOA,GPIO_Pin_2);
+		delay(500);
+		GPIO_SetBits(GPIOA,GPIO_Pin_2);
+		delay(500);
+	}
+```
+
+## Video demo của nhóm 
+
+_Video demo kết quả của nhóm sẽ được đặt tại link sau:_
+[Link]()
