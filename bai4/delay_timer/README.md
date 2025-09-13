@@ -6,7 +6,7 @@
 
 - Sử dụng delay mới tạo để cho Led nháy.
 
-***File code kết quả: [Link](https://github.com/NguyenVuTatKhang/EmbeddedSystemNhom1/blob/main/bai3/user/main.c)***
+***File code kết quả: [Link](https://github.com/NguyenVuTatKhang/EmbeddedSystemNhom1/blob/main/bai4/delay_timer/user/main.c)***
 
 ## Các bước thực thi
 
@@ -114,4 +114,4 @@ int main(){
 ## Video demo của nhóm 
 
 _Video demo kết quả của nhóm sẽ được đặt tại link sau:_
-[Link](https://drive.google.com/file/d/1pvP23hquZI2nOCYmjnZWq1IdNXOiVtYn/view?usp=sharing)
+[Link](https://drive.google.com/file/d/1XhjwcRYCdKcMpeQfWnXZOgvtWQ7EwWr5/view?usp=sharing)
