@@ -12,7 +12,7 @@ _Bài tập có 2 yêu cầu chính như sau:_
 
 ## Các bước thực thi
 
-1. Cấu hình cho 2 Led (Cụ thể ở đây sử dụng Led tại PA0 và PA2)
+### 1. Cấu hình cho 2 Led (Cụ thể ở đây sử dụng Led tại PA0 và PA2)
 
 _Để cấu hình Led cho PA0 và PA2, chúng ta sẽ thực hiện các bước sau:_
 
@@ -36,7 +36,7 @@ GPIO_InitStruct.GPIO_Pin = GPIO_Pin_0 | GPIO_Pin_2;
 GPIO_Init(GPIOA, &GPIO_InitStruct);
 ```
 
-2. Cấu hình cho nút bấm (Cụ thể ở đây sử dụng PA1)
+### 2. Cấu hình cho nút bấm (Cụ thể ở đây sử dụng PA1)
 
 _Để cấu hình cho nút bấm, chúng ta thực hiện các bước sau:_
 
@@ -49,7 +49,7 @@ GPIO_InitStruct.GPIO_Pin = GPIO_Pin_1;
 
 - Do cấu hình cho trạng thái là Input, nên trong trường hợp này sẽ không cấu hình cho tốc độ nữa.
 
-3. Cấu hình cho ngắt ngoài (EXTI 1, dùng chân PA1 tương ứng với nút bấm đã configure tại PA1)
+### 3. Cấu hình cho ngắt ngoài (EXTI 1, dùng chân PA1 tương ứng với nút bấm đã configure tại PA1)
 
 _Để cấu hình cho ngắt ngoài, chúng ta thực hiện như function dưới đây:_
 
@@ -77,7 +77,7 @@ void EXTI_Config(){
 
 ***Lưu ý: Ngắt ngoài trong phần trên sử dụng sườn xuống, tức EXTI_Trigger_Falling***
 
-4. Thực hiện tác vụ cho 2 Led chạy
+### 4. Thực hiện tác vụ cho 2 Led chạy
 
 _Tác vụ cho 2 Led chạy sẽ nằm trong 2 phần riêng biệt, với Led PA0 tại EXTI còn Led PA2 trong while(1)_
 

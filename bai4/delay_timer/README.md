@@ -10,7 +10,7 @@
 
 ## Các bước thực thi
 
-1. Cấu hình cho Led (PA0)
+### 1. Cấu hình cho Led (PA0)
 
 _Để cấu hình Led cho PA0, chúng ta thực hiện các bước sau:_
 
@@ -30,7 +30,7 @@ GPIO_InitStruct.GPIO_Speed = GPIO_Speed_50MHz;
 GPIO_Init(GPIOA, &GPIO_InitStruct);
 ```
 
-2. Cấu hình cho Timer (TIM2)
+### 2. Cấu hình cho Timer (TIM2)
 
 - Để tạo hàm delay bằng Timer, cần cấu hình bộ đếm cơ bản:
 
@@ -71,7 +71,7 @@ Tức timer này sẽ sử dụng 16bits auto-load để đếm
 	+ Prescale sẽ đếm từ 71 về 0, tức 72 số. Do đó, khi chia 72 cho 72MHz (x2 của 36MHz do PPRE bằng 2) sẽ được 1us. Lúc này nếu muốn đếm lên 1ms sẽ tăng thêm 1000 là 72000 hoặc tạo 1 hàm khác như dưới đây.
 	
 
-3. Xây dựng hàm delay dựa vào Timer
+### 3. Xây dựng hàm delay dựa vào Timer
 
 - Hàm tạo delay 1ms:
 
@@ -94,7 +94,7 @@ void delay_ms(int time_delay){
 }
 ```
 
-4. Hàm main() thực thi nhấp nháy Led
+### 4. Hàm main() thực thi nhấp nháy Led
 
 - Tại vòng lặp while(1), Led tại PA0 sẽ được bật/tắt luân phiên với chu kỳ 1 giây:
 

@@ -18,7 +18,7 @@ _Bài tập yêu cầu:_
 
 ## Các bước thực thi
 
-1. Cấu hình GPIO
+### 1. Cấu hình GPIO
 
 - Bật clock cho GPIOA.
 
@@ -52,7 +52,7 @@ void Config_GPIO()
 }
 ```
 
-2. Cấu hình UART1
+### 2. Cấu hình UART1
 
 - Bật clock cho USART1.
 
@@ -111,7 +111,7 @@ do UART nhóm chỉ sử dụng 2 chân TX và RX nên không sử dụng phần
 
 
 
-3. Hàm UART Send/Receive
+### 3. Hàm UART Send/Receive
 
 _Để gửi 1 chuỗi dữ liệu, trước hết cần hiểu rằng trong ngôn ngữ C thông thường, chuỗi được tạo thành từ các mảng nhỏ, tức "string" sẽ được tạo thành từ nhiều "char"và kết thúc bằng "\0". Chính vì thế nhóm đã làm như sau:_
 
@@ -145,7 +145,7 @@ uint16_t UART_GetChar(void)
 ```
 
 
-4. Xử lý ngắt USART1
+### 4. Xử lý ngắt USART1
 
 _Khi đọc được dữ liệu từ UART gửi đến cho STM32, function trên chỉ sử dụng để lưu được các mảng "char" đơn lẻ. Trong khi đó yêu cầu đặt ra cần đến str, chính vì thế để đảm bảo sử lý ngắt được suôn sẻ nhóm đã làm như sau:_
 
@@ -174,7 +174,7 @@ void USART1_IRQHandler()
 }
 ```
 
-5. Hàm main()
+### 5. Hàm main()
 
 _Sau khi tổng hợp lại các function trên, ta được hàm main thực hiện những yêu cầu sau:_
 

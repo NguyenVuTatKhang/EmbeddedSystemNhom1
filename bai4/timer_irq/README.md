@@ -10,7 +10,7 @@
 
 ## Các bước thực thi
 
-1. Cấu hình Led tại PA0
+### 1. Cấu hình Led tại PA0
 
 _Để cấu hình Led cho PA0, ta thực hiện các bước sau:_
 
@@ -30,7 +30,7 @@ GPIO_InitStruct.GPIO_Speed = GPIO_Speed_50MHz;
 GPIO_Init(GPIOA, &GPIO_InitStruct);
 ```
 
-2. Cấu hình Timer2
+### 2. Cấu hình Timer2
 
 _Ta cấu hình Timer2 để tạo ngắt định kỳ như sau:_
 
