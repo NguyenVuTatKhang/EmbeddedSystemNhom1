@@ -63,7 +63,7 @@ NVIC_SetPriority(TIM2_IRQn, 0);
 NVIC_EnableIRQ(TIM2_IRQn);
 ```
 
-- Hàm xử lý ngắt của Timer2
+### 3. Hàm xử lý ngắt của Timer2
 
 Mỗi khi Timer2 tràn, sẽ kích hoạt ngắt và ta đảo trạng thái của Led PA0.
 
@@ -76,7 +76,7 @@ void TIM2_IRQHandler(){
 }
 ```
 
-- Hàm main()
+### 4. Hàm main()
 
 Tích hợp các cấu hình và chạy vòng lặp chính.
 
