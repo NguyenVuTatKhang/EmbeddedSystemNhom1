@@ -67,30 +67,70 @@ GPIO_Init(GPIOB, &GPIO_InitStruct);
 
 ### 3. Cấu hình I2C1 làm Master
 
-Bật clock cho I2C1, reset, sau đó cấu hình:
+- Khai báo biến struct cho I2C.
 
-Tốc độ: 100 kHz (Standard Mode).
+```c
+I2C_InitTypeDef I2C_InitStruct;
+```
 
-DutyCycle = 2 (thường dùng).
+- Bật clock cho I2C:
 
-OwnAddress1 = 0x00 (không quan trọng vì STM32 là master).
+_Note: Có thể bật clock cho I2C bằng 2 cách, sử dụng thư viện như dưới đây hoặc thanh ghi bằng cách cho RCC -> 0x00200000_
 
-Bật ACK để nhận dữ liệu.
-
-Địa chỉ 7-bit.
-
+```c
 RCC_APB1PeriphClockCmd(RCC_APB1Periph_I2C1, ENABLE);
-I2C_DeInit(I2C1);
+```
 
-I2C_InitStruct.I2C_ClockSpeed = 100000;     
-I2C_InitStruct.I2C_Mode = I2C_Mode_I2C;         
-I2C_InitStruct.I2C_DutyCycle = I2C_DutyCycle_2;    
-I2C_InitStruct.I2C_OwnAddress1 = 0x00; 
-I2C_InitStruct.I2C_Ack = I2C_Ack_Enable;
-I2C_InitStruct.I2C_AcknowledgedAddress = I2C_AcknowledgedAddress_7bit; 
+_Trước hết, cần phải thiết lập lại tất cả các thanh ghi của ngoại vi I2C về trạng thái ban đầu của chúng và giải phóng các tài nguyên đã được sử dụng cho giao tiếp I2C cũ_
+
+- Reset I2C trên thanh ghi RCC_APB1RSTR, trang 142:  
+
+Bật bit reset cho I2C và thoát reset như dưới đây:  
+
+```c
+I2C_DeInit(I2C1); // Reset I2C.
+```
+
+/* ---------------- Cấu hình cho I2C ---------------- */
+
+/* Chọn tốc độ truyền của bus I²C, tức là tần số xung trên chân SCL:  
+   + Standard mode (100 kHz).  
+   + Fast mode (400 kHz).  
+*/
+I2C_InitStruct.I2C_ClockSpeed = 100000;
+
+/* Chọn chế độ:  
+   + I2C_Mode_I2C: hoạt động ở chế độ I2C thường.  
+   + I2C_Mode_SMBusDevice / I2C_Mode_SMBusHost (SMBus): chuyên dùng cho hệ thống quản lý năng lượng.  
+*/
+I2C_InitStruct.I2C_Mode = I2C_Mode_I2C;
+
+/* Tỉ lệ thời gian low/high:  
+   + I2C_DutyCycle_2: tỉ lệ xung SCL low/high = 2, thường dùng.  
+   + I2C_DutyCycle_16_9: tỉ lệ xung SCL low/high = 16/9, chỉ dùng trong fast mode.  
+*/
+I2C_InitStruct.I2C_DutyCycle = I2C_DutyCycle_2;
+
+/* Địa chỉ của STM32 khi làm slave.  
+   Khi STM32 làm master thì giá trị này không quan trọng.  
+*/
+I2C_InitStruct.I2C_OwnAddress1 = 0x00;
+
+/* Cho phép gửi ACK sau khi nhận dữ liệu:  
+   + Enable: sau mỗi byte nhận được, STM32 sẽ tự động kéo SDA xuống 0 (ACK) để báo cho master biết đã nhận dữ liệu.  
+   + Disable: sau mỗi byte nhận được sẽ không gửi ACK (tức gửi NACK để kết thúc việc nhận dữ liệu).  
+*/
+I2C_InitStruct.I2C_Ack = I2C_Ack_Enable; // Phát ACK sau khi nhận được dữ liệu.
+
+/* Chọn số bit địa chỉ cho slave:  
+   + I2C_AcknowledgedAddress_7bit: chọn địa chỉ 7 bit, hầu hết các ngoại vi phổ biến.  
+   + I2C_AcknowledgedAddress_10bit: chọn địa chỉ 10 bit, ngoại vi đặc biệt.  
+*/
+I2C_InitStruct.I2C_AcknowledgedAddress = I2C_AcknowledgedAddress_7bit; // Số bit địa chỉ cho slave.
 
 I2C_Init(I2C1, &I2C_InitStruct);
-I2C_Cmd(I2C1, ENABLE);
+I2C_Cmd(I2C1, ENABLE); // Enable I2C1.
+
 
 ### 4. Hàm ghi dữ liệu tới slave I2C
 
