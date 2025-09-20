@@ -1,0 +1,18 @@
+--cpu Cortex-M3
+".\objects\main.o"
+".\objects\nrf24l01.o"
+".\objects\spi1.o"
+".\objects\delay.o"
+".\objects\uart.o"
+".\objects\misc.o"
+".\objects\stm32f10x_gpio.o"
+".\objects\stm32f10x_rcc.o"
+".\objects\stm32f10x_spi.o"
+".\objects\stm32f10x_tim.o"
+".\objects\stm32f10x_usart.o"
+".\objects\startup_stm32f10x_md.o"
+".\objects\system_stm32f10x.o"
+--strict --scatter ".\Objects\NRF24L01.sct"
+--summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
+--info sizes --info totals --info unused --info veneers
+--list ".\Listings\NRF24L01.map" -o .\Objects\NRF24L01.axf
