@@ -1,0 +1,6 @@
+{
+  "files.associations": {
+    "nrf24l01.h": "c",
+    "spi1.h": "c"
+  }
+}
