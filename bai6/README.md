@@ -322,8 +322,10 @@ raw = (buf[0] << 8) | buf[1];
 - Cảm biến BH1750 sẽ trả về giá trị raw 16-bit (dữ liệu thô), chưa phải đơn vị lux.
 
 - Để đổi sang lux (đơn vị ánh sáng thực tế), datasheet chỉ rõ công thức:
+
 	​
 ![ảnh](anh1.png)
+
 
 ***Trong đó:***
 
