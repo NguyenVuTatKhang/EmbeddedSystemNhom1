@@ -10,6 +10,7 @@ extern "C"{
 #include "spi1.h"
 #include "uart.h"
 #include "delay.h"
+#include "rgb_led.h"
 
 
 #ifdef __cplusplus

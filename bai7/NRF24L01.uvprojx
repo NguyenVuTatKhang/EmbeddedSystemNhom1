@@ -433,6 +433,16 @@
               <FileType>5</FileType>
               <FilePath>.\Resources\uart.h</FilePath>
             </File>
+            <File>
+              <FileName>rgb_led.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Resources\rgb_led.c</FilePath>
+            </File>
+            <File>
+              <FileName>rgb_led.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Resources\rgb_led.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

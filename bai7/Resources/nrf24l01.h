@@ -5,10 +5,11 @@ extern "C"{
 #endif
 #include "all_header.h"     
 
-// #define TX_MODE
+ #define TX_MODE
 
 
 #define ADDRESS_LENGTH  5
+#define PACKET_SIZE     32  
 
 // SPI Commands
 #define NRF_CMD_R_REGISTER         0x00
@@ -104,13 +105,26 @@ extern "C"{
 #define FIFO_RX_EMPTY             0x01
 
 
+// DYNPD Register Bits
+#define DPL_P5                    0x20
+#define DPL_P4                    0x10
+#define DPL_P3                    0x08
+#define DPL_P2                    0x04
+#define DPL_P1                    0x02
+#define DPL_P0                    0x01
+
+// FEATURE Register Bits
+#define EN_DPL                    0x04
+#define EN_ACK_PAY                0x02
+#define EN_DYN_ACK                0x01
+
 #ifdef TX_MODE
-void NRF_TX_Mode_Init(uint8_t *addr, uint8_t channel, uint8_t size_of_payload);
+void NRF_TX_Mode_Init(uint8_t *addr, uint8_t channel);
 void NRF_SendData(uint8_t *data, uint8_t len);
 void NRF_Flush_TX(void);
 
 #else
-void NRF_RX_Mode_Init(uint8_t *addr, uint8_t channel, uint8_t size_of_payload);
+void NRF_RX_Mode_Init(uint8_t *addr, uint8_t channel);
 void NRF_StartListening(void);
 void NRF_StopListening(void);
 uint8_t NRF_DataReady(void);
@@ -118,6 +132,8 @@ void NRF_ReadData(uint8_t *data, uint8_t len);
 void NRF_Flush_RX(void);
 #endif
 
+void NRF_WriteCmd(uint8_t cmd, uint8_t *value, uint8_t len);
+void NRF_ReadCmd(uint8_t cmd, uint8_t *value, uint8_t len);
 
 void NRF_WriteReg_WithOneBit(uint8_t reg, uint8_t bit, uint8_t value);
 uint8_t NRF_ReadReg_WithOneBit(uint8_t reg, uint8_t bit);
@@ -126,7 +142,7 @@ void NRF_WriteReg_WithOneByte(uint8_t reg, uint8_t value);
 uint8_t NRF_ReadReg_WithOneByte(uint8_t reg);
 
 void NRF_WriteReg_WithMultiBytes(uint8_t reg, uint8_t *data, uint8_t len);
-uint8_t NRF_ReadReg_WithMultiBytes(uint8_t reg, uint8_t *data, uint8_t len);
+void NRF_ReadReg_WithMultiBytes(uint8_t reg, uint8_t *data, uint8_t len);
 
 #ifdef __cplusplus
 }

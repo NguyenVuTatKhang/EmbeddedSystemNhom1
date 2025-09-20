@@ -4,6 +4,7 @@
 ".\objects\spi1.o"
 ".\objects\delay.o"
 ".\objects\uart.o"
+".\objects\rgb_led.o"
 ".\objects\misc.o"
 ".\objects\stm32f10x_gpio.o"
 ".\objects\stm32f10x_rcc.o"

@@ -17,4 +17,6 @@
   D:\Setup\Keilc\Pack\Keil\STM32F1xx_DFP\2.4.1\Device\StdPeriph_Driver\inc\stm32f10x_tim.h \
   D:\Setup\Keilc\Pack\Keil\STM32F1xx_DFP\2.4.1\Device\StdPeriph_Driver\inc\stm32f10x_usart.h \
   D:\Setup\Keilc\Pack\Keil\STM32F1xx_DFP\2.4.1\Device\StdPeriph_Driver\inc\misc.h \
-  Resources\spi1.h Resources\uart.h Resources\delay.h
+  Resources\spi1.h Resources\uart.h Resources\delay.h \
+  Resources\rgb_led.h \
+  D:\Setup\Keilc\Core\ARM\ARMCLANG\Bin\..\include\string.h
