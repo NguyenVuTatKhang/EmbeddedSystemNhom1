@@ -10,7 +10,7 @@ _Yêu cầu của bài tập_
 
 - Hiển thị dữ liệu đọc được lên màn hình terminal qua UART.
 
-***File code kết quả [Link]()***
+***File code kết quả [Link](https://github.com/NguyenVuTatKhang/EmbeddedSystemNhom1/blob/main/bai6/User/main.c)***
 
 ## Các bước thực thi
 
