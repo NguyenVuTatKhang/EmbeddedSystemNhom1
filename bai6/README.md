@@ -10,7 +10,7 @@ _Yêu cầu của bài tập_
 
 - Hiển thị dữ liệu đọc được lên màn hình terminal qua UART.
 
-***File code kết quả [Link]()***
+***File code kết quả [Link](https://github.com/NguyenVuTatKhang/EmbeddedSystemNhom1/blob/main/bai6/User/main.c)***
 
 ## Các bước thực thi
 
@@ -322,8 +322,10 @@ raw = (buf[0] << 8) | buf[1];
 - Cảm biến BH1750 sẽ trả về giá trị raw 16-bit (dữ liệu thô), chưa phải đơn vị lux.
 
 - Để đổi sang lux (đơn vị ánh sáng thực tế), datasheet chỉ rõ công thức:
+
 	​
 ![ảnh](anh1.png)
+
 
 ***Trong đó:***
 
